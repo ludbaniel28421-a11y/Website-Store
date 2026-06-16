@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TokoGaya - Premium Online Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Smooth transition untuk slider pergeseran */
+        #slider-wrapper {
+            scroll-behavior: smooth;
+            transition: transform 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="filterProduk('Semua')">
+                    <div class="bg-black text-white p-2 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-shopping-bag text-xl"></i>
+                    </div>
+                    <span class="font-bold text-2xl tracking-tight">Toko<span class="text-blue-600">Gaya</span></span>
+                </div>
+
+                <div class="hidden md:flex items-center gap-8 font-medium text-gray-600">
+                    <a href="#" class="hover:text-black transition-colors">Home</a>
+                    <a href="#produk-section" class="hover:text-black transition-colors">About</a>
+                    <a href="#fitur-section" class="hover:text-black transition-colors">Services</a>
+                    <a href="#produk-section" class="hover:text-black transition-colors">Gallery</a>
+                    <a href="#footer-section" class="hover:text-black transition-colors">Contact</a>
+                    <button class="border border-black px-5 py-1.5 rounded-md text-black hover:bg-black hover:text-white transition-all font-semibold">LOGIN</button>
+                </div>
+
+                <div class="relative cursor-pointer p-2 text-gray-600 hover:text-black transition-colors" onclick="toggleKeranjang()">
+                    <i class="fas fa-shopping-cart text-2xl"></i>
+                    <span id="cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold leading-none text-white transform translate-x-1/3 -translate-y-1/4 bg-red-500 rounded-full hidden">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="relative w-full overflow-hidden bg-black group">
+        <div id="slider-wrapper" class="flex">
+            
+            <div class="min-w-full relative h-[420px] md:h-[550px] flex items-center">
+                <img class="absolute inset-0 w-full h-full object-cover opacity-40" src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&q=80&w=2000" alt="Hero Background 1">
+                <div class="relative max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8 flex flex-col items-center text-center w-full text-white">
+                    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">SELAMAT DATANG</h1>
+                    <p class="mt-4 max-w-2xl text-lg md:text-xl text-gray-200 mb-8">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Temukan koleksi baju, celana, topi, dan aksesoris terbaik harianmu.
+                    </p>
+                    <a href="#produk-section" class="bg-white text-black px-8 py-3 border border-black font-medium hover:bg-gray-100 transition-colors uppercase tracking-wider text-sm">
+                        Pelajari Lebih Lanjut
+                    </a>
+                </div>
+            </div>
+
+            <div class="min-w-full relative h-[420px] md:h-[550px] flex items-center">
+                <img class="absolute inset-0 w-full h-full object-cover opacity-40" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=2000" alt="Hero Background 2">
+                <div class="relative max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8 flex flex-col items-center text-center w-full text-white">
+                    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">PROMO AKHIR PEKAN</h1>
+                    <p class="mt-4 max-w-2xl text-lg md:text-xl text-gray-200 mb-8">
+                        Dapatkan potongan harga eksklusif hingga 50% untuk item pilihan. Jangan sampai kehabisan stok terbatas kami!
+                    </p>
+                    <button onclick="filterProduk('Aksesoris')" class="bg-blue-600 text-white px-8 py-3 font-medium hover:bg-blue-700 transition-colors uppercase tracking-wider text-sm">
+                        Lihat Diskon Aksesoris
+                    </button>
+                </div>
+            </div>
+
+            <div class="min-w-full relative h-[420px] md:h-[550px] flex items-center">
+                <img class="absolute inset-0 w-full h-full object-cover opacity-40" src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80&w=2000" alt="Hero Background 3">
+                <div class="relative max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8 flex flex-col items-center text-center w-full text-white">
+                    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">KOLEKSI PREMIUM</h1>
+                    <p class="mt-4 max-w-2xl text-lg md:text-xl text-gray-200 mb-8">
+                        Dibuat dengan jahitan rapi serta material berkualitas tinggi yang nyaman dipakai untuk aktivitas formal maupun kasual.
+                    </p>
+                    <a href="#produk-section" class="border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-black transition-colors uppercase tracking-wider text-sm">
+                        Lihat Semua Produk
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 z-10">
+            <i class="fas fa-chevron-left text-2xl"></i>
+        </button>
+        <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 z-10">
+            <i class="fas fa-chevron-right text-2xl"></i>
+        </button>
+
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+            <div onclick="goToSlide(0)" class="dot w-3 h-3 rounded-full bg-white/50 cursor-pointer transition-all"></div>
+            <div onclick="goToSlide(1)" class="dot w-3 h-3 rounded-full bg-white/50 cursor-pointer transition-all"></div>
+            <div onclick="goToSlide(2)" class="dot w-3 h-3 rounded-full bg-white/50 cursor-pointer transition-all"></div>
+        </div>
+    </div>
+
+    <main id="produk-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
+            <h2 class="text-3xl font-bold text-gray-900 tracking-tight">Koleksi Konten Produk</h2>
+            <div class="flex overflow-x-auto pb-2 md:pb-0 w-full md:w-auto gap-2">
+                <button onclick="filterProduk('Semua')" class="filter-btn px-5 py-2 bg-black text-white rounded-full font-medium transition-colors whitespace-nowrap">Semua</button>
+                <button onclick="filterProduk('Baju')" class="filter-btn px-5 py-2 bg-white text-gray-600 border border-gray-300 rounded-full font-medium hover:border-black hover:text-black transition-colors whitespace-nowrap">Baju</button>
+                <button onclick="filterProduk('Celana')" class="filter-btn px-5 py-2 bg-white text-gray-600 border border-gray-300 rounded-full font-medium hover:border-black hover:text-black transition-colors whitespace-nowrap">Celana</button>
+                <button onclick="filterProduk('Topi')" class="filter-btn px-5 py-2 bg-white text-gray-600 border border-gray-300 rounded-full font-medium hover:border-black hover:text-black transition-colors whitespace-nowrap">Topi</button>
+                <button onclick="filterProduk('Aksesoris')" class="filter-btn px-5 py-2 bg-white text-gray-700 border border-gray-300 rounded-full font-medium hover:border-black hover:text-black transition-colors whitespace-nowrap">Aksesoris</button>
+            </div>
+        </div>
+
+        <div id="grid-produk" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+    </main>
+
+    <section id="fitur-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <div class="aspect-video md:aspect-[16/10] rounded-xl overflow-hidden bg-gray-200">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=1000" alt="Layanan Premium Kami" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-2xl font-bold text-gray-900 tracking-tight">JUDUL KONTEN: BAHAN PREMIUM</h3>
+                <p class="text-gray-500 leading-relaxed">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Kami memastikan seluruh material kain yang kami gunakan lolos uji kenyamanan tingkat tinggi.
+                </p>
+                <button class="border border-black text-black px-6 py-2 text-sm font-medium hover:bg-black hover:text-white transition-colors uppercase">
+                    Read More
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <div class="space-y-4 order-2 md:order-1">
+                <h3 class="text-2xl font-bold text-gray-900 tracking-tight">JUDUL KONTEN: DESAIN KONTEMPORER</h3>
+                <p class="text-gray-500 leading-relaxed">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Pakaian kami didesain mengikuti perkembangan mode terkini agar penampilan Anda selalu modis setiap hari.
+                </p>
+                <button class="border border-black text-black px-6 py-2 text-sm font-medium hover:bg-black hover:text-white transition-colors uppercase">
+                    Read More
+                </button>
+            </div>
+            <div class="aspect-video md:aspect-[16/10] rounded-xl overflow-hidden bg-gray-200 order-1 md:order-2">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1000" alt="Koleksi Desain Kreatif" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+            </div>
+        </div>
+
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mb-12 bg-white rounded-3xl shadow-sm border border-gray-100">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <h2 class="text-3xl font-bold text-gray-900 mb-3">Connect With Us! ✨</h2>
+            <p class="text-gray-500">Ikuti keseruan kami, dapatkan tips padupadan outfit harian di media sosial resmi kami.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="https://instagram.com" target="_blank" class="flex items-center gap-4 p-6 rounded-2xl border border-gray-100 hover:border-pink-500 hover:shadow-lg hover:shadow-pink-500/5 transition-all group bg-gray-50/50">
+                <div class="w-14 h-14 rounded-xl bg-pink-50 flex items-center justify-center text-pink-600 text-2xl group-hover:bg-gradient-to-tr group-hover:from-yellow-500 group-hover:to-purple-600 group-hover:text-white transition-all duration-300">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-900 group-hover:text-pink-600 transition-colors">Instagram</h3>
+                    <p class="text-sm text-gray-500">@tokogaya.official</p>
+                </div>
+                <i class="fas fa-arrow-right ml-auto text-gray-300 group-hover:text-pink-500 group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+            <a href="https://tiktok.com" target="_blank" class="flex items-center gap-4 p-6 rounded-2xl border border-gray-100 hover:border-black hover:shadow-lg hover:shadow-black/5 transition-all group bg-gray-50/50">
+                <div class="w-14 h-14 rounded-xl bg-gray-900 flex items-center justify-center text-white text-2xl group-hover:bg-black transition-all">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-900 group-hover:text-gray-700 transition-colors">TikTok</h3>
+                    <p class="text-sm text-gray-500">@tokogaya.style</p>
+                </div>
+                <i class="fas fa-arrow-right ml-auto text-gray-300 group-hover:text-black group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+            <a href="https://wa.me/6281234567890" target="_blank" class="flex items-center gap-4 p-6 rounded-2xl border border-gray-100 hover:border-green-500 hover:shadow-lg hover:shadow-green-500/5 transition-all group bg-gray-50/50">
+                <div class="w-14 h-14 rounded-xl bg-green-50 flex items-center justify-center text-green-600 text-2xl group-hover:bg-green-500 group-hover:text-white transition-all">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-900 group-hover:text-green-600 transition-colors">WhatsApp</h3>
+                    <p class="text-sm text-gray-500">Hubungi Admin Toko</p>
+                </div>
+                <i class="fas fa-arrow-right ml-auto text-gray-300 group-hover:text-green-500 group-hover:translate-x-1 transition-all"></i>
+            </a>
+        </div>
+    </section>
+
+    <footer id="footer-section" class="bg-white border-t border-gray-200 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-12">
+                
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-black text-white p-2 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <span class="font-bold text-2xl tracking-tight">LOGO</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </p>
+                    <div class="flex gap-3 text-gray-400">
+                        <a href="#" class="hover:text-blue-600"><i class="fab fa-facebook-square text-xl"></i></a>
+                        <a href="#" class="hover:text-pink-600"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="hover:text-red-600"><i class="fab fa-youtube text-xl"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-900 text-base uppercase tracking-wider mb-4">LINKS</h4>
+                    <ul class="space-y-2 text-sm text-gray-500 font-medium">
+                        <li><a href="#" class="hover:text-black transition-colors">• Home</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors">• About</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors">• Services</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors">• Gallery</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors">• Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-900 text-base uppercase tracking-wider mb-4">SERVICES</h4>
+                    <ul class="space-y-2 text-sm text-gray-500 font-medium">
+                        <li><a href="#" class="hover:text-black transition-colors">• Web Design</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors">• Web Development</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors">• Branding</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors">• Marketing</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-900 text-base uppercase tracking-wider mb-4">CONTACT</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-map-marker-alt mt-1 text-gray-700"></i>
+                            <span>Jl. Agus salim No. 123, kec.Purwosari, Solo</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fas fa-envelope text-gray-700"></i>
+                            <a href="mailto:email@contoh.com" class="hover:text-black">email@contoh.com</a>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fas fa-phone text-gray-700"></i>
+                            <span>0812-3456-7890</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="border-t border-gray-200 pt-8 text-center">
+                <p class="text-gray-500 text-sm">© 2024 Your Company. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="sidebar-keranjang" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="toggleKeranjang()"></div>
+        <div class="fixed inset-y-0 right-0 max-w-full flex">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="flex items-center justify-between p-6 border-b border-gray-100">
+                    <h2 class="text-2xl font-bold flex items-center gap-2">
+                        <i class="fas fa-shopping-cart"></i> Keranjang (<span id="cart-sidebar-count">0</span>)
+                    </h2>
+                    <button onclick="toggleKeranjang()" class="p-2 text-gray-400 hover:text-black hover:bg-gray-100 rounded-full transition-colors">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <div id="list-keranjang" class="flex-1 overflow-y-auto p-6 space-y-6">
+                    </div>
+
+                <div id="footer-keranjang" class="border-t border-gray-100 p-6 bg-gray-50 hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-gray-600 font-medium">Total Pembayaran</span>
+                        <span id="total-harga" class="text-2xl font-bold text-black">Rp 0</span>
+                    </div>
+                    <button onclick="prosesCheckout()" class="w-full bg-black text-white py-4 rounded-xl font-bold text-lg hover:bg-gray-800 transition-transform active:scale-95 flex justify-center items-center gap-2 shadow-lg">
+                        Checkout Sekarang
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // === LOGIC SLIDER INTERAKTIF ===
+        let slideIndex = 0;
+        const slidesWrapper = document.getElementById('slider-wrapper');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = 3;
+
+        function updateSlider() {
+            slidesWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
+            dots.forEach((dot, index) => {
+                if (index === slideIndex) {
+                    dot.className = "dot w-8 h-3 rounded-full bg-white cursor-pointer transition-all";
+                } else {
+                    dot.className = "dot w-3 h-3 rounded-full bg-white/50 cursor-pointer transition-all";
+                }
+            });
+        }
+
+        function nextSlide() {
+            slideIndex = (slideIndex + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            slideIndex = index;
+            updateSlider();
+        }
+
+        setInterval(nextSlide, 5000); // Slider berganti otomatis tiap 5 detik
+        updateSlider();
+
+
+        // === LOGIC DATABASE PRODUK & KERANJANG ===
+        const daftarProduk = [
+            { id: 1, nama: "JUDUL KONTEN: KAOS PREMIUM", kategori: "Baju", deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", img: "https://i.pinimg.com/736x/44/e4/18/44e4182b6f7267c66dc277e0294387d3.jpg", harga: 85000 },
+            { id: 2, nama: "JUDUL KONTEN: KEMEJA FLANEL", kategori: "Baju", deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", img: "https://i.pinimg.com/1200x/39/56/31/395631857f5a2eedfb537c6becde0826.jpg", harga: 150000 },
+            { id: 3, nama: "JUDUL KONTEN: JEANS DENIM", kategori: "Celana", deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", img: "https://i.pinimg.com/1200x/98/3b/b4/983bb4525f7ceb3d807badab0d2d1b3a.jpg", harga: 210000 },
+            { id: 4, nama: "JUDUL KONTEN: CHINO SHORT", kategori: "Celana", deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", img: "https://i.pinimg.com/736x/ec/a2/65/eca2657f745a1204a670a1af8ddb8430.jpg", harga: 120000 },
+            { id: 5, nama: "JUDUL KONTEN: BASEBALL CAP", kategori: "Topi", deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", img: "https://i.pinimg.com/1200x/e8/4e/53/e84e531183a959ceb644395ba39c1013.jpg", harga: 65000 },
+            { id: 6, nama: "JUDUL KONTEN: BEANIE HAT", kategori: "Topi", deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", img: "https://i.pinimg.com/1200x/54/13/40/541340f97e7f9e890cee5734114ba808.jpg", harga: 45000 }
+        ];
+
+        let keranjangBelanja = [];
+
+        const formatRupiah = (angka) => {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
+        };
+
+        function tampilkanProduk(kategoriDipilih = 'Semua') {
+            const grid = document.getElementById('grid-produk');
+            grid.innerHTML = '';
+
+            const produkDifilter = kategoriDipilih === 'Semua' 
+                ? daftarProduk 
+                : daftarProduk.filter(p => p.kategori === kategoriDipilih);
+
+            produkDifilter.forEach(item => {
+                const card = `
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden group p-4 flex flex-col justify-between">
+                        <div>
+                            <div class="relative aspect-[4/3] overflow-hidden bg-gray-100 rounded-lg mb-4">
+                                <img src="${item.img}" alt="${item.nama}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <h3 class="font-bold text-lg text-gray-900 mb-1 tracking-tight line-clamp-1">${item.nama}</h3>
+                            <p class="text-sm text-gray-500 mb-3 line-clamp-2">${item.deskripsi}</p>
+                            <p class="text-blue-600 font-bold text-base mb-4">${formatRupiah(item.harga)}</p>
+                        </div>
+                        <button onclick="tambahItem(${item.id})" class="border border-black text-black py-2 rounded-md font-semibold hover:bg-black hover:text-white transition-colors text-sm uppercase tracking-wider active:scale-95">
+                            Read More / Add
+                        </button>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        function filterProduk(kategori) {
+            tampilkanProduk(kategori);
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                if (btn.innerText === kategori) {
+                    btn.className = "filter-btn px-5 py-2 bg-black text-white rounded-full font-medium transition-colors whitespace-nowrap";
+                } else {
+                    btn.className = "filter-btn px-5 py-2 bg-white text-gray-600 border border-gray-300 rounded-full font-medium hover:border-black hover:text-black transition-colors whitespace-nowrap";
+                }
+            });
+        }
+
+        function toggleKeranjang() {
+            const sidebar = document.getElementById('sidebar-keranjang');
+            sidebar.classList.toggle('hidden');
+            renderKeranjang();
+        }
+
+        function tambahItem(id) {
+            const produkDipilih = daftarProduk.find(p => p.id === id);
+            const itemSudahAda = keranjangBelanja.find(item => item.id === id);
+
+            if (itemSudahAda) {
+                itemSudahAda.jumlah += 1;
+            } else {
+                keranjangBelanja.push({ ...produkDipilih, jumlah: 1 });
+            }
+
+            perbaruiBadgeNavigasi();
+            alert(`${produkDipilih.nama} berhasil masuk ke list!`);
+        }
+
+        function hapusItem(id) {
+            keranjangBelanja = keranjangBelanja.filter(item => item.id !== id);
+            perbaruiBadgeNavigasi();
+            renderKeranjang();
+        }
+
+        function perbaruiBadgeNavigasi() {
+            const totalItem = keranjangBelanja.reduce((acc, item) => acc + item.jumlah, 0);
+            const badge = document.getElementById('cart-count');
+            
+            if (totalItem > 0) {
+                badge.innerText = totalItem;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function renderKeranjang() {
+            const listContainer = document.getElementById('list-keranjang');
+            const footerKeranjang = document.getElementById('footer-keranjang');
+            const sidebarCount = document.getElementById('cart-sidebar-count');
+            
+            const totalItem = keranjangBelanja.reduce((acc, item) => acc + item.jumlah, 0);
+            sidebarCount.innerText = totalItem;
+
+            if (keranjangBelanja.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-64 text-gray-400 space-y-3">
+                        <i class="fas fa-shopping-cart text-5xl text-gray-200"></i>
+                        <p class="text-base">Daftar item kosong.</p>
+                    </div>
+                `;
+                footerKeranjang.classList.add('hidden');
+                return;
+            }
+
+            listContainer.innerHTML = '';
+            let totalHarga = 0;
+
+            keranjangBelanja.forEach(item => {
+                totalHarga += (item.harga * item.jumlah);
+                const itemHTML = `
+                    <div class="flex gap-4 items-center">
+                        <img src="${item.img}" alt="${item.nama}" class="w-20 h-20 object-cover rounded-xl border">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-900 line-clamp-1 text-sm">${item.nama}</h4>
+                            <p class="text-blue-600 font-medium text-sm">${formatRupiah(item.harga)}</p>
+                            <span class="text-xs text-gray-500">Jumlah: ${item.jumlah}</span>
+                        </div>
+                        <button onclick="hapusItem(${item.id})" class="p-2 text-red-500 hover:bg-red-50 rounded-full transition-colors">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                `;
+                listContainer.innerHTML += itemHTML;
+            });
+
+            document.getElementById('total-harga').innerText = formatRupiah(totalHarga);
+            footerKeranjang.classList.remove('hidden');
+        }
+
+        function prosesCheckout() {
+            alert("Pesanan Anda berhasil dikonfirmasi!");
+            keranjangBelanja = [];
+            perbaruiBadgeNavigasi();
+            toggleKeranjang();
+        }
+
+        // Jalankan tampilan awal produk
+        tampilkanProduk('Semua');
+    </script>
+</body>
+</html>
